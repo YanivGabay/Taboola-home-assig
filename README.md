@@ -21,4 +21,22 @@ and my npm version is 10.9.0
 
 ## Installation
 
+you can just use the npm install, to install the current package.json dependencies.
+
+```bash
+npm install
+```
+
+
+## Running the tests
+
+will run the tests in the tests folder via jest.
+
+```bash
+npm test
+```
+
+
+
+
 

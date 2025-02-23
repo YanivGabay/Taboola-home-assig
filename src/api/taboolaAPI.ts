@@ -37,6 +37,7 @@ export function fetchRecommendations(
         if (!response.ok) {
             throw new Error("Network response was not ok");
         }
+        console.log("Response:", response);
         return response.json();
     });
 }
