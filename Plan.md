@@ -1,6 +1,6 @@
 # Taboola-home-assig
 
-### Plan
+## Plan
 
 In order to create a modular component, we need to look at those key points given from the assigment:
 
@@ -19,3 +19,9 @@ In order to create a modular component, we need to look at those key points give
 - We should think about the usability and design of the widget, that would produce the optimal performance.
 - We render on other people sites, so we must be sensible.
 - Also we need to design the code, in a way that will allow adding more types of recommendations, for example, videos, gifs, etc.
+
+
+### Actual plan
+
+- Use typescript for the project.
+- Start with the Taboola API code, and create tests for it.
