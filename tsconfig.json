@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "ES5",   //tells the compiler to transpile into ECMAScript 5, which ensured compatibility with older browsers                  
+      "module": "commonjs", // Module system            
+      "outDir": "./dist",   // output directory               
+      "rootDir": "./src",     //where the source code is located             
+      "strict": true,      // strict type checking                
+      "esModuleInterop": true,   // better compatibility with commonjs modules (when exporting/importing modules)         
+      "forceConsistentCasingInFileNames": true, // ensures consistent casing in file names
+      "skipLibCheck": true           //skip type checking of declaration files, can speed up the build process
+    },
+    "include": ["src/**/*"], // all typescript files in the src folder
+    "exclude": ["node_modules", "**/*.test.ts"] // exclude the test files (we will compile them separately)
+  }
+  

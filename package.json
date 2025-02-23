@@ -1,0 +1,32 @@
+{
+  "name": "taboola-home-assig",
+  "version": "1.0.0",
+  "description": "A recommendation widget for displaying Taboola sponsored content.",
+  "main": "dist/index.js",
+  "comments": "This will be a typescript project, so the compiled results to the dist folder",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "start": "live-server dist"
+  },
+  "scriptComments": {
+    "build": "This will compile the typescript code to the dist folder",
+    "test": "This will run the tests",
+    "start": "This will start the server in order to see the widget in action"
+  },
+  "keywords": [],
+  "author": "Yaniv Gabay",
+"license": "MIT",
+"devDependencies": {
+  "typescript": "^4.0.0",
+  "jest": "^27.0.0",
+  "@types/jest": "^27.0.0"
+},
+"dependenciesComments": {
+  "typescript": "This is the typescript compiler",
+  "jest": "This is the testing framework",
+  "@types/jest": "This is the types for jest"
+}
+
+
+}
