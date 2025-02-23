@@ -25,3 +25,8 @@ In order to create a modular component, we need to look at those key points give
 
 - Use typescript for the project.
 - Start with the Taboola API code, and create tests for it.
+- took the logger class from my other project.
+- created a basic recommendation widget which is a container that fetches recommendations and displays them.
+- that widget will decide if to display error/loading states.
+- Than we will create the sponsored recommendations widget, which will recive a data for a single sponsored recommendation.
+- that component, will handle the ui etc.
