@@ -1,5 +1,19 @@
 # Taboola-home-assig
 
+
+## Future improvements/Regrets
+
+- i DONT like npm, should have used Yarn, just overall dont like it.
+- The api call as stated, doesnt work, we need extra parameters.
+- also currently, the api call works 1 out of 2 times for some reason, the first time it does work, but returns an empty list.
+
+
+```
+HTTP ERROR 400
+Problem accessing /apiHandler/1.0/json/taboola-templates/recommendations.get. Reason:
+
+    The request is missing rec.count parameter
+```
 ## Plan
 
 In order to create a modular component, we need to look at those key points given from the assigment:

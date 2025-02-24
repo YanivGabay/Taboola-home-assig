@@ -1,17 +1,14 @@
 {
-    "compilerOptions": {
-      "target": "ES5",   //tells the compiler to transpile into ECMAScript 5, which ensured compatibility with older browsers                  
-      "module": "commonjs", // Module system            
-      "outDir": "./dist",   // output directory               
-      "rootDir": ".",     //where the source code is located             
-      "strict": true,      // strict type checking                
-      "esModuleInterop": true,   // better compatibility with commonjs modules (when exporting/importing modules)         
-      "forceConsistentCasingInFileNames": true, // ensures consistent casing in file names
-      "skipLibCheck": true , //skip type checking of declaration files, can speed up the build process
-      "types": ["jest", "node"], //types for jest and node 
-      "lib": ["dom", "es5", "es2015"],    
-    },
-    "include": ["src/**/*", "tests/**/*"],
-    "exclude": ["node_modules"] 
-  }
-  
+  "compilerOptions": {
+    "target": "es5",            // Generate code mostly compatible with older browsers
+    "module": "es2015",         // Use ES modules, which modern browsers support with <script type="module">
+    "outDir": "./dist",         // Where compiled files go
+    "rootDir": "./src",         // Your .ts source files live in src
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "lib": ["dom", "es5", "es2015"]
+  },
+  "include": ["src/**/*"]
+}

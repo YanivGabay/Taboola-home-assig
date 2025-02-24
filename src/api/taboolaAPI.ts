@@ -10,7 +10,8 @@ import { TaboolaResponse } from './types';
 const API_BASE = "http://api.taboola.com/1.0/json/taboola-templates/recommendations.get";
 const API_KEY = "f9040ab1b9c802857aa783c469d0e0ff7e7366e4";
 const APP_TYPE = "desktop";
-
+const COUNT = 4;
+const TYPE = "video";
 
 
 
@@ -28,6 +29,8 @@ export function fetchRecommendations(
         "app.type": APP_TYPE,
         "app.apikey": API_KEY,
         "source.id": sourceId,
+        "rec.count": COUNT.toString(),
+        "source.type": TYPE,
     });
 
     const url = `${API_BASE}?${params.toString()}`;

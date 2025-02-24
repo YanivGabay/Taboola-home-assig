@@ -1,7 +1,7 @@
-import { fetchRecommendations } from "../api/taboolaAPI";
-import { TaboolaRecommendation } from "../api/types";
+import { fetchRecommendations } from "../api/taboolaAPI.js";
+import { TaboolaRecommendation } from "../api/types.js";
 
-import Logger from '../utils/Logger';
+
 
 /**
  * RecommendationWidget is a container component for displaying recommendations.
@@ -18,6 +18,8 @@ export class RecommendationWidget {
      */
     constructor(containerId: string) {
       const el = document.getElementById(containerId);
+     
+      console.log("Container element:", el);
       if (!el) {
         throw new Error(`Container element with id "${containerId}" not found.`);
       }
@@ -34,8 +36,7 @@ export class RecommendationWidget {
       try {
         // Fetch recommendations from the Taboola API using a constant source ID.
         const response = await fetchRecommendations("demoSource");
-        Logger.info("Recommendations fetched successfully");
-        Logger.debug("Response:", response);
+      
         // Render the list of recommendations.
         this.renderRecommendations(response.list);
       } catch (error: any) {
