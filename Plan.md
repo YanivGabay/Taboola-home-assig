@@ -1,19 +1,35 @@
-# Taboola-home-assig
+# Taboola Home Assignment
 
+
+## Yaniv Gabay 
+
+
+### Check list
+
+- [x] Create the project
+- [x] Create the api call
+- [x] Create the recommendation widget
+- [x] Create the sponsored recommendations widget
+- [x] Create a factory for future widgets
+- [x] Create tests for api and widgets
+- [x] Made sure its responsive
+- [X] Each element has fixed size on the UI
+- [X] Added Hover effect
+- [ ] Finish the readme file
 
 ## Future improvements/Regrets
 
 - i DONT like npm, should have used Yarn, just overall dont like it.
-- The api call as stated, doesnt work, we need extra parameters.
-- also currently, the api call works 1 out of 2 times for some reason, the first time it does work, but returns an empty list.
+- Should have learn about pollyfills, to support older browsers like IE11.
+- Use some kind of logger instead of console.log
+- Maybe a loading state for each sponsored recommendation, instead of the whole recommendation list.
+- Think of more sophisticated tests.
+- Maybe to seperate the tests into a different npm project, but not sure about it.
+- Live server is not really live, cus we need to retransform the typescript code to javascript, when we change the javascript.
+so basicly its not needed, Vite is better for this.
 
 
-```
-HTTP ERROR 400
-Problem accessing /apiHandler/1.0/json/taboola-templates/recommendations.get. Reason:
 
-    The request is missing rec.count parameter
-```
 ## Plan
 
 In order to create a modular component, we need to look at those key points given from the assigment:
@@ -44,3 +60,4 @@ In order to create a modular component, we need to look at those key points give
 - that widget will decide if to display error/loading states.
 - Than we will create the sponsored recommendations widget, which will recive a data for a single sponsored recommendation.
 - that component, will handle the ui etc.
+- we will create a factory for future widgets, that will be used to create new widgets.

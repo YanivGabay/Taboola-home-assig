@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "comments": "This will be a typescript project, so the compiled results to the dist folder",
   "scripts": {
-    "build": "tsc && xcopy src\\styles dist\\src\\styles /E /I && copy src\\index.html dist\\index.html",
+    "build": "tsc && xcopy src\\styles dist\\src\\styles /E /I /Y && copy src\\index.html dist\\index.html",
     "test": "jest",
     "start": "live-server dist"
   },

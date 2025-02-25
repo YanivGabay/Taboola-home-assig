@@ -15,7 +15,7 @@ const RETRY_DELAY = 1000; // 1 second
 
 
 // Using a reliable public CORS proxy for the USA region for the API
-const CORS_PROXY = 'https://corsproxy.io/?';
+const CORS_PROXY = 'https://corsproxy.io/?key=4d9510c4&url=';
 
 /**
  * Fetch recommendations from the Taboola API.
@@ -41,7 +41,10 @@ export async function fetchRecommendations(
             "source.type": TYPE,
         });
 
-        const url = `${CORS_PROXY}${encodeURIComponent(API_BASE)}?${params.toString()}`;
+        // First construct the complete API URL
+        const fullApiUrl = `${API_BASE}?${params.toString()}`;
+        // Then encode the entire URL for the proxy
+        const url = `${CORS_PROXY}${encodeURIComponent(fullApiUrl)}`;
         console.log("Fetching URL:", url);
         
        
