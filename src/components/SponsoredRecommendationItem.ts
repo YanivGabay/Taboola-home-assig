@@ -16,39 +16,55 @@ export class SponsoredRecommendationItem implements IRecommendationItem{
 
   public render(): HTMLElement {
     const li = document.createElement("li");
+    li.className = "recommendation-item";
+
     const a = document.createElement("a");
     a.href = this.recommendation.url;
     a.target = "_blank";
     a.style.textDecoration = "none";
-    a.style.display = "block";
-    a.style.marginBottom = "10px";
+    a.style.display = "flex";
+    a.style.flexDirection = "column";
+    a.style.height = "100%";
 
+    // Image section
     const img = document.createElement("img");
-    // Force https if needed
     let imgUrl = this.recommendation.thumbnail[0].url;
     if (!imgUrl.startsWith("https://")) {
-      imgUrl = imgUrl.replace("http://", "https://");
+        imgUrl = imgUrl.replace("http://", "https://");
     }
     img.src = imgUrl;
-    img.alt = this.recommendation.name;
-    img.style.maxWidth = "100%";
+    img.alt = this.recommendation.name || "Sponsored Content";
+    img.className = "recommendation-image";
     img.loading = "lazy";
     img.referrerPolicy = "no-referrer";
 
-    // Use the fallback placeholder if the main image fails
     img.onerror = () => {
-      console.log("Failed to load image:", imgUrl);
-      img.src = this.FALLBACK_PLACEHOLDER;
+        console.log("Failed to load image:", imgUrl);
+        img.src = this.FALLBACK_PLACEHOLDER;
     };
 
-    a.appendChild(img);
+    // Create a content wrapper
+    const contentWrapper = document.createElement("div");
+    contentWrapper.className = "recommendation-content";
 
-    // Render the recommendation name
+    // Title section
     const title = document.createElement("p");
-    title.textContent = this.recommendation.name;
-    a.appendChild(title);
+    title.textContent = this.recommendation.name || "Sponsored Content";
+    title.className = "recommendation-title";
 
+    // Branding section
+    const branding = document.createElement("p");
+    branding.textContent = this.recommendation.branding || "Sponsored";
+    branding.className = "recommendation-branding";
+
+    // Append in correct order
+    contentWrapper.appendChild(title);
+    contentWrapper.appendChild(branding);
+
+    a.appendChild(img);
+    a.appendChild(contentWrapper);
     li.appendChild(a);
+
     return li;
   }
 }

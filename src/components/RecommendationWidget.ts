@@ -51,7 +51,7 @@ export class RecommendationWidget {
      * Renders a loading indicator in the container.
      */
     private renderLoading(): void {
-      this.container.innerHTML = `<p>Loading recommendations...</p>`;
+      this.container.innerHTML = `<div class="taboola-loading">Loading recommendations...</div>`;
     }
   
     /**
@@ -59,7 +59,7 @@ export class RecommendationWidget {
      * @param error - The error encountered during fetching.
      */
     private renderError(error: Error): void {
-      this.container.innerHTML = `<p>Error loading recommendations: ${error.message}</p>`;
+      this.container.innerHTML = `<div class="taboola-error">Error loading recommendations: ${error.message}</div>`;
     }
   
     /**
@@ -72,6 +72,7 @@ export class RecommendationWidget {
       this.container.innerHTML = "";
 
       const ul = document.createElement("ul");
+      ul.className = "recommendations-list";
       ul.style.listStyleType = "none";
   
       recommendations.forEach((rec) => {
