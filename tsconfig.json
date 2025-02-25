@@ -3,12 +3,13 @@
     "target": "es5",            // Generate code mostly compatible with older browsers
     "module": "es2015",         // Use ES modules, which modern browsers support with <script type="module">
     "outDir": "./dist",         // Where compiled files go
-    "rootDir": "./src",         // Your .ts source files live in src
+    "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "lib": ["dom", "es5", "es2015"]
+    "lib": ["dom", "es5", "es2015"],
+    "types": ["jest", "node"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "tests/**/*"]
 }
