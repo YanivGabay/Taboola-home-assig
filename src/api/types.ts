@@ -1,6 +1,7 @@
 //types section
 //will represent a single recommendation item
 export interface TaboolaRecommendation {
+   
     description?: string; // optional because not every item has it
     type: string; // the type of the recommendation
     name: string;

@@ -1,5 +1,6 @@
 import { fetchRecommendations } from "../api/taboolaAPI.js";
 import { TaboolaRecommendation } from "../api/types.js";
+import { RecommendationItemFactory } from "./RecommendationItemFactory.js";
 
 
 
@@ -11,12 +12,12 @@ import { TaboolaRecommendation } from "../api/types.js";
 
 export class RecommendationWidget {
     private container: HTMLElement;
-  
+    private widgetType: string;
     /**
      * Creates an instance of RecommendationWidget.
      * @param containerId - The ID of the HTML element where the widget will be rendered.
      */
-    constructor(containerId: string) {
+    constructor(containerId: string, widgetType: string) {
       const el = document.getElementById(containerId);
      
       console.log("Container element:", el);
@@ -24,6 +25,7 @@ export class RecommendationWidget {
         throw new Error(`Container element with id "${containerId}" not found.`);
       }
       this.container = el;
+      this.widgetType = widgetType; 
     }
   
     /**
@@ -67,39 +69,16 @@ export class RecommendationWidget {
      * @param recommendations - An array of recommendations fetched from the API.
      */
     private renderRecommendations(recommendations: TaboolaRecommendation[]): void {
-      // Clear the container.
       this.container.innerHTML = "";
-  
-      // Create a list element to hold recommendation items.
+
       const ul = document.createElement("ul");
-      ul.style.listStyleType = "none"; // Remove default list styling.
+      ul.style.listStyleType = "none";
   
       recommendations.forEach((rec) => {
-        const li = document.createElement("li");
-  
-        // Create an anchor element for each recommendation.
-        const a = document.createElement("a");
-        a.href = rec.url;
-        a.target = "_blank"; // Opens the link in a new tab.
-        a.style.textDecoration = "none";
-        a.style.display = "block";
-        a.style.marginBottom = "10px";
-  
-        // Render the thumbnail image if available.
-        const img = document.createElement("img");
-        // Use the first thumbnail's URL. Adjust if your API provides multiple thumbnails.
-        img.src = rec.thumbnail[0].url;
-        img.alt = rec.name;
-        img.style.maxWidth = "100%";
-        a.appendChild(img);
-  
-        // Render the recommendation name.
-        const title = document.createElement("p");
-        title.textContent = rec.name;
-        a.appendChild(title);
-  
-        li.appendChild(a);
-        ul.appendChild(li);
+        // Use the factory to get the correct item type
+        const itemComponent = RecommendationItemFactory.create(this.widgetType, rec);
+        const itemElement = itemComponent.render();
+        ul.appendChild(itemElement);
       });
   
       this.container.appendChild(ul);
