@@ -13,11 +13,11 @@ import { SponsoredRecommendationItem } from "./SponsoredRecommendationItem.js";
 
 export class RecommendationItemFactory {
   public static create(widgetType: string, recommendation: TaboolaRecommendation): IRecommendationItem {
-    // For example, if we want a “video” widget type:
+    // For example, if we want a "video" widget type:
    // if (widgetType === "video") {
     //  return new VideoRecommendationItem(recommendation);
     
-    // If “sponsored” or any other type you define:
+    // If "sponsored" or any other type you define:
     if (widgetType === "sponsored") {
       return new SponsoredRecommendationItem(recommendation);
     }

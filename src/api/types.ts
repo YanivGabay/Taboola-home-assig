@@ -2,7 +2,7 @@
 //will represent a single recommendation item
 export interface TaboolaRecommendation {
    
-    description?: string; // optional because not every item has it
+    description?: string; // optional cus not every item has it
     type: string; // the type of the recommendation
     name: string;
     created: string;
@@ -14,10 +14,10 @@ export interface TaboolaRecommendation {
     id: string;
     origin: string;
     url: string;
-  }
+}
 
 //the actual response from the API
 export interface TaboolaResponse {
     id: string;
     list: TaboolaRecommendation[];//an array of recommendations
-  }
+}

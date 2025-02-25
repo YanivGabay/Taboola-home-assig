@@ -20,7 +20,8 @@ We didnt had to stick with the design, it was just for reference.
 - I used a CORS proxy to fetch the API, because the API is needed to be fetched from USA.
 - The proxy is: https://corsproxy.io/?key=4d9510c4 its my public api key, but i dont really care to share it as it a free tier anyways for localhost only.
 - Your more than welcome to check them out: https://corsproxy.io/
-
+- There is a limit of 100 requests per day, but i dont think we will reach that.
+- Sometimes i have received an empty api response, so we just do several attempts to fetch the data.
 ### Prerequisites
 
 - Node.js

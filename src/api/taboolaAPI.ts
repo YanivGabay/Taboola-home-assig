@@ -12,8 +12,6 @@ const TYPE = "video";
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 1000; // 1 second
 
-
-
 // Using a reliable public CORS proxy for the USA region for the API
 const CORS_PROXY = 'https://corsproxy.io/?key=4d9510c4&url=';
 
@@ -58,7 +56,8 @@ export async function fetchRecommendations(
 
             const data = await response.json();
             console.log(`Received ${data.list.length} recommendations`);
-
+            
+            // If the data is not empty, return the data
             if (data.list && data.list.length > 0) {
                 console.log("Recieved recommendations:", data.list , "after", attempts, "attempts");
                 return data;
