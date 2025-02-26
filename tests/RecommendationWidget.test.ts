@@ -72,4 +72,24 @@ describe('RecommendationWidget', () => {
         const items = document.querySelectorAll('.recommendation-item');
         expect(items.length).toBe(mockRecommendations.length);
     });
+
+    test('should show loading state during initialization', () => {
+        const widget = new RecommendationWidget(containerId, 'sponsored');
+        widget.init();
+        
+        const loading = document.querySelector('.taboola-loading');
+        expect(loading).toBeTruthy();
+        expect(loading?.textContent).toContain('Loading');
+    });
+
+    test('should show error state when API fails', async () => {
+        mockedFetch.mockRejectedValue(new Error('Test error'));
+        const widget = new RecommendationWidget(containerId, 'sponsored');
+        
+        await widget.init();
+        
+        const errorElement = document.querySelector('.taboola-error');
+        expect(errorElement).toBeTruthy();
+        expect(errorElement?.textContent).toContain('Error loading recommendations');
+    });
 }); 

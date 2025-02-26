@@ -23,7 +23,7 @@ describe('SponsoredRecommendationItem', () => {
         created: new Date().toISOString(),
         id: '123'
     };
-
+    
     test('should create a valid recommendation item', () => {
         const item = new SponsoredRecommendationItem(mockRecommendation);
         const element = item.render();
@@ -50,6 +50,6 @@ describe('SponsoredRecommendationItem', () => {
         const image = element.querySelector('img');
 
         image?.dispatchEvent(new Event('error'));
-        expect(image?.src).toContain('encrypted-tbn0.gstatic.com'); // Fallback image
+        expect(image?.src).toContain('encrypted-tbn0.gstatic.com'); // Fallback image url
     });
 }); 
