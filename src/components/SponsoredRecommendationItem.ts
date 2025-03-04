@@ -6,9 +6,10 @@ import { IRecommendationItem } from "./IRecommendationItem.js";
  * Renders a sponsored recommendation item (image + link + title).
  * Also demonstrates a fallback placeholder if asset fails to load.
  */
-export class SponsoredRecommendationItem implements IRecommendationItem{
+export class SponsoredRecommendationItem implements IRecommendationItem {
   private recommendation: TaboolaRecommendation;
-  private readonly FALLBACK_PLACEHOLDER = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNNLEL-qmmLeFR1nxJuepFOgPYfnwHR56vcw&s"; // or your own placeholder URL
+  private readonly FALLBACK_PLACEHOLDER =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNNLEL-qmmLeFR1nxJuepFOgPYfnwHR56vcw&s"; // or your own placeholder URL
 
   constructor(recommendation: TaboolaRecommendation) {
     this.recommendation = recommendation;
@@ -30,7 +31,7 @@ export class SponsoredRecommendationItem implements IRecommendationItem{
     const img = document.createElement("img");
     let imgUrl = this.recommendation.thumbnail[0].url;
     if (!imgUrl.startsWith("https://")) {
-        imgUrl = imgUrl.replace("http://", "https://");
+      imgUrl = imgUrl.replace("http://", "https://");
     }
     img.src = imgUrl;
     img.alt = this.recommendation.name || "Sponsored Content";
@@ -39,8 +40,8 @@ export class SponsoredRecommendationItem implements IRecommendationItem{
     img.referrerPolicy = "no-referrer"; // no referrer policy means that the image is not sent to the referrer
 
     img.onerror = () => {
-        console.log("Failed to load image:", imgUrl);
-        img.src = this.FALLBACK_PLACEHOLDER;
+      console.log("Failed to load image:", imgUrl);
+      img.src = this.FALLBACK_PLACEHOLDER;
     };
 
     // Create a content wrapper
