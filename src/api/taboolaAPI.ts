@@ -57,7 +57,7 @@ async function retry<T>(
         throw new Error(`Failed after ${retries} attempts`);
       }
 
-      await new Promise((resolve) => setTimeout(resolve, delay));
+      await new Promise((timeout) => setTimeout(timeout, delay));
     }
   }
 
