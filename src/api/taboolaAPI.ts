@@ -25,53 +25,48 @@ const CORS_PROXY = 'https://corsproxy.io/?key=4d9510c4&url=';
 export async function fetchRecommendations(
     sourceId: string = "demoSource"
 ): Promise<TaboolaResponse> {
+
+    const fullApiUrl = `${API_BASE}?app.type=${APP_TYPE}&app.apikey=${API_KEY
+        }&source.id=${sourceId}&rec.count=${COUNT}&source.type=${TYPE}`;
+        const url = `${CORS_PROXY}${encodeURIComponent(fullApiUrl)}`;
+
+    const response = await retry(() => getResponse(url), MAX_RETRIES, RETRY_DELAY);
+
+    return response;
+}
+
+async function retry<T> (fn: () => Promise<T>, retries: number = 3,delay: number = 1000): Promise<T> {
     let attempts = 0;
 
-    while (attempts < MAX_RETRIES) {
-        attempts++;
-        console.log(`Attempt ${attempts} of ${MAX_RETRIES} to fetch recommendations`);
-
-        const params = new URLSearchParams({
-            "app.type": APP_TYPE,
-            "app.apikey": API_KEY,
-            "source.id": sourceId,
-            "rec.count": COUNT.toString(),
-            "source.type": TYPE,
-        });
-
-        // First construct the complete API URL
-        const fullApiUrl = `${API_BASE}?${params.toString()}`;
-        // Then encode the entire URL for the proxy
-        const url = `${CORS_PROXY}${encodeURIComponent(fullApiUrl)}`;
-        console.log("Fetching URL:", url);
-        
-       
-           
-
+    while (attempts < retries) {
         try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-
-            const data = await response.json();
-            console.log(`Received ${data.list.length} recommendations`);
-            
-            // If the data is not empty, return the data
-            if (data.list && data.list.length > 0) {
-                console.log("Recieved recommendations:", data.list , "after", attempts, "attempts");
-                return data;
-            }
-
-            console.log("Received empty list, retrying...");
-            await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
+            return await fn();
         } catch (error) {
-            if (attempts === MAX_RETRIES) {
-                throw error;
-            }
+            attempts++;
             console.log(`Attempt ${attempts} failed:`, error);
+
+            if (attempts >= retries) {
+                throw new Error(`Failed after ${retries} attempts`);
+            }
+
+            await new Promise(resolve => setTimeout(resolve, delay));
         }
     }
 
-    throw new Error(`Failed to get non-empty recommendations after ${MAX_RETRIES} attempts`);
+    throw new Error(`Failed after ${retries} attempts`);
+}
+
+async function getResponse(url: string) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        return data;
+    }
+    catch (error) {
+        console.error("Error fetching data:", error);
+        throw error;
+    }
 }
